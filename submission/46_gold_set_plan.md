@@ -8,11 +8,11 @@ không làm thay phần lý do.
 
 | camera_id | Hard case cần chọn | Vì sao dễ sai | Annotation space / calibration cần giữ | Cách review trước khi gọi là gold |
 |---|---|---|---|---|
-| front | TODO | TODO | TODO | TODO |
-| rear | TODO | TODO | TODO | TODO |
-| left | TODO | TODO | TODO | TODO |
-| right | TODO | TODO | TODO | TODO |
+| front | Người đi bộ và xe đạp nhỏ ở giữa ảnh gần ngưỡng H=40; người dắt xe đạp so với người ngồi trên xe; xe bị người hoặc xe khác che | Rider/dắt xe khó phân biệt khi chân bị che hoặc bị làm mờ riêng tư; vật nhỏ dễ rơi xuống dưới H | Giữ ảnh gốc theo không gian fisheye (không undistort), ghi calibration/vòng kính của camera trước và timestamp của frame | Hai người rà độc lập theo cùng guideline, không xem nhãn nhau; ca bất đồng đưa lên người thứ ba, ghi rule_id trước khi gọi là gold |
+| rear | Vật sát cản khi lùi xe; vật bị thân xe ego che một phần; ánh sáng ngược | Thân xe ego chiếm góc ảnh nên phải phân biệt ego_body với vật thật; vật gần nhưng bị che | Vùng ego_body riêng của camera sau và calibration riêng, không dùng chung với camera trước | Người rà độc lập kiểm ego_body và ngưỡng H; chỉ các frame hai người thống nhất mới vào gold |
+| left | Vật ở rìa vòng kính bị cắt (truncated) và méo cong; xe vượt gần sát xe ego | Méo mạnh ở rìa làm box lỏng hoặc sai hình học; truncated dễ nhầm với occluded | Giữ lens circle và bin zone (center/mid/edge) riêng của camera trái để box được so trên cùng không gian | Người rà xem overlay trên ảnh gốc, kiểm truncated và occluded tách riêng theo rule R05 |
+| right | Cụm xe máy đỗ và người dắt xe sát lề; vật xếp sát nhau dễ gộp hoặc tách nhầm box | Nhiều vật chồng nhau nên khó quyết định một hay hai instance, và khó đếm rider với người đứng cạnh | Calibration và vòng kính riêng của camera phải; ghi rõ hướng camera để không lẫn với camera trái | Hai người rà độc lập, đếm số vật từng vùng; bất đồng về gộp/tách phải giải quyết bằng rule trước khi vào gold |
 
-- Khi nào cần refresh gold set (đổi camera, calibration hoặc rule): TODO
-- Một ca seam/cross-camera cần policy và evidence trước khi ghép hai box: TODO
-- Vì sao peer agreement hoặc quality report trên ảnh một camera chưa chứng minh gold set đúng cho cả bốn camera: TODO
+- Khi nào cần refresh gold set (đổi camera, calibration hoặc rule): refresh khi đổi vị trí lắp hoặc góc camera, khi calibration/vòng kính thay đổi, khi bump rules_version (ví dụ sửa luật rider hoặc ngưỡng H) hoặc khi đổi phiên bản model dùng để pre-label. Mỗi lần refresh phải ghi lại camera, calibration và rules_version đi kèm gold; gold cũ không tự áp dụng cho cấu hình mới.
+- Một ca seam/cross-camera cần policy và evidence trước khi ghép hai box: một xe hoặc người đứng ở góc trước-phải xuất hiện cả trên camera trước và camera phải. Hai box đều hợp lệ trên ảnh của từng camera, chưa được coi là trùng hay cùng một vật. Chỉ ghép hoặc gán chung track ID khi có timestamp đồng bộ, calibration giữa hai camera và policy output nêu rõ; nếu thiếu thì giữ hai box riêng và ghi ca vào escalation.
+- Vì sao peer agreement hoặc quality report trên ảnh một camera chưa chứng minh gold set đúng cho cả bốn camera: độ khớp giữa hai người hoặc với teaching reference trên ba frame ADASIND chỉ nói về một camera, một hướng nhìn và rất ít ảnh. Mỗi camera có méo, thân xe ego, calibration và loại vật thường gặp khác nhau, nên một chỉ số tốt ở một camera không suy ra được chất lượng ở ba camera còn lại. Teaching reference cũng là bản sửa tay chưa được nhiều người kiểm, nên chỉ dùng làm điểm tham chiếu, không làm gold.

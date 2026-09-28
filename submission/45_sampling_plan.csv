@@ -1,9 +1,9 @@
 camera_id,slice_type,frames,risk,rationale
-front,normal,,TODO,TODO
-front,hard,,TODO,TODO
-rear,normal,,TODO,TODO
-rear,hard,,TODO,TODO
-left,normal,,TODO,TODO
-left,hard,,TODO,TODO
-right,normal,,TODO,TODO
-right,hard,,TODO,TODO
+front,normal,30,medium,"Camera hướng đi chính nên cần nền đủ lớn cho cảnh thường: đường thoáng, xe ba bánh và xe máy chạy cùng chiều. Đây là mẫu chuẩn để so với hard, chưa có bằng chứng cần nhiều hơn 30."
+front,hard,30,high,"Camera trước nhìn xa nhất và gặp vật nhỏ ở giữa ảnh: người đi bộ cao khoảng 40–60 px gần ngưỡng H, người dắt hoặc ngồi trên xe đạp, xe bị che nhau. Ảnh ADASIND cho thấy các ca này dễ nhầm rider/dắt xe nên tôi cho hard bằng normal."
+rear,normal,20,low,"Camera sau thường thấy cảnh chậm và lặp lại (đỗ, lùi), ít vật chuyển động nhanh nên cần ít mẫu thường hơn camera trước."
+rear,hard,20,medium,"Ca khó khi lùi xe gần vật (người đứng sát cản, xe đạp), vật bị thân xe ego che một phần và ánh sáng ngược. Giả thuyết cần kiểm bằng mẫu thử vì ADASIND không có camera sau."
+left,normal,22,medium,Camera trái nhìn ra làn bên cạnh và lề; cảnh thường gồm xe vượt và người đi bộ ở lề. Cần mẫu thường để so với hard.
+left,hard,23,high,Méo mạnh ở rìa ảnh làm vật ngoài cùng cong và bị cắt bởi vòng kính (truncated); thân xe ego chiếm góc ảnh. Vật gần hơn nên vượt ngưỡng H nhưng hình dạng lệch so với ảnh camera phẳng.
+right,normal,25,medium,"Camera phải nhìn ra lề đường bên phải. Giả sử lưu thông bên phải thì đây là phía có nhiều người đi bộ và xe đỗ sát lề, nên cần nhiều mẫu thường hơn camera trái. Đây là giả thuyết, chưa có dữ liệu bốn camera để kiểm."
+right,hard,30,high,"Phía lề có nhiều vật xếp sát nhau (xe máy đỗ, người dắt xe, nhóm người) gây gộp/tách box và che nhau như ca xe đạp bị che bởi người trong slice của tôi. Vùng chồng seam ở hai góc trước-phải và sau-phải cần thêm ca hard."

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations>
+  <version>1.1</version>
+  <meta>
+    <job>
+      <id>65</id>
+      <size>1</size>
+      <mode>annotation</mode>
+      <overlap>0</overlap>
+      <bugtracker></bugtracker>
+      <created>2026-09-28 09:42:34.961944+00:00</created>
+      <updated>2026-09-28 09:43:46.195780+00:00</updated>
+      <subset>default</subset>
+      <start_frame>0</start_frame>
+      <stop_frame>0</stop_frame>
+      <frame_filter></frame_filter>
+      <segments>
+        <segment>
+          <id>65</id>
+          <start>0</start>
+          <stop>0</stop>
+          <url>http://localhost:8080/api/jobs/65/dataset/export/api/jobs/65</url>
+        </segment>
+      </segments>
+      <owner>
+        <username>lich</username>
+        <email>26ai.lichdh@vinuni.edu.vn</email>
+      </owner>
+      <assignee></assignee>
+      <labels>
+        <label>
+          <name>parking_line</name>
+          <color>#ffcc00</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>free_space</name>
+          <color>#35c98b</color>
+          <type>any</type>
+          <attributes>
+          </attributes>
+        </label>
+      </labels>
+    </job>
+    <dumped>2026-09-28 09:44:12.464090+00:00</dumped>
+  </meta>
+  <image id="0" name="parking-lot-core.jpg" width="960" height="720">
+    <polygon label="free_space" source="manual" occluded="0" points="250.00,490.00;930.00,490.00;955.00,600.00;700.00,622.00;540.00,652.00;400.00,650.00;250.00,560.00" z_order="0">
+    </polygon>
+    <polyline label="parking_line" source="manual" occluded="0" points="402.00,650.00;537.00,716.00" z_order="0">
+    </polyline>
+    <polyline label="parking_line" source="manual" occluded="0" points="694.00,621.00;957.00,682.00" z_order="0">
+    </polyline>
+    <polyline label="parking_line" source="manual" occluded="0" points="172.00,520.00;250.00,559.00" z_order="0">
+    </polyline>
+  </image>
+</annotations>
